@@ -1,0 +1,71 @@
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-3"></div>
+
+  <div class="col-6">
+    <h1>Data Enrollment Form</h1>
+    <hr>
+    <form #userForm= "ngForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <label class="form-check-label" for="d_name">Name</label>
+        <input type="text" #d_name="ngModel" required
+        [class.is-invalid]="d_name.invalid && d_name.touched"
+        class="form-control" name="d_name"
+        [(ngModel)]="userModel.name">
+        <small class="text-danger" [class.d-none]="d_name.valid || d_name.untouched">Name is required</small>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" [(ngModel)]="userModel.gender"  type="radio" name="d_male" id="d_male" value="Male">
+        <label class="form-check-label" for="d_male">
+          Male
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" [(ngModel)]="userModel.gender" name="d_female" id="d_female" value="Female">
+        <label class="form-check-label" for="d_female">
+          Female
+        </label>
+        <br>
+      </div>
+
+      <div class="form-group">
+        <br>
+        <label class="form-check-label" for="d_mail">E-Mail</label>
+        <input type="text" #d_mail="ngModel"
+        pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"
+        [class.is-invalid]="d_mail.touched && d_mail.invalid"
+        class="form-control"
+        name="d_mail" [(ngModel)]="userModel.email">
+        <small class="text-danger" *ngIf="d_mail.errors?.pattern">Please enter valid E-Mail ID</small>
+      </div>
+
+      <div class="form-group">
+        <label class="form-check-label" for="d_phone">Phone</label>
+        <input type="tel" #d_phone="ngModel"
+        pattern="^\d{10}$"
+        [class.is-invalid]="d_phone.invalid && d_phone.touched"
+        class="form-control"
+        name="d_phone" [(ngModel)]="userModel.phone">
+        <div *ngIf = "d_phone.errors && (d_phone.invalid || d_phone.touched)">
+          <small class="text-danger" *ngIf="d_phone.errors?.required">
+            Phone number is required.
+          </small>
+          <small class="text-danger" *ngIf="d_phone.errors?.pattern">
+            Phone number must be 10 digits.
+          </small>
+        </div>
+      </div>
+
+      <button [disabled]="userForm.form.invalid" class="btn btn-outline-primary">Submit form</button>
+
+    </form>
+
+  </div>
+
+  <div class="col-3"></div>
+
+  </div>
+</div>

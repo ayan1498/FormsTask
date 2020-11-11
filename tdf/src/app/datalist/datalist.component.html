@@ -1,0 +1,32 @@
+<div class="container-fluid" *ngIf="userData">
+  <div class="row p-3">
+    <div class="col-3"></div>
+
+    <div class="col-6 p-3">
+      <div class="p-3" *ngFor="let userD of userData">
+        <div class="c-callout c-callout-info b-t-1 b-r-1 b-b-1">
+          <p style="text-align: justify;">
+            Name : {{userD.name }}
+          </p>
+          <p>
+            Gender : {{userD.gender}}
+          </p>
+          <p>
+            E-Mail : {{ userD.email}}
+          </p>
+          <p>
+            Phone Number : {{userD.phone}}
+          </p>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-3"></div>
+  </div>
+
+
+
+
+
+</div>
